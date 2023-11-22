@@ -91,6 +91,8 @@ dependencies {
     implementation(libs.thirdparty.konfetti)
     implementation(libs.thirdparty.ferriswheel)
     implementation(libs.thirdparty.navigationdrawer)
+
+    implementation("com.github.tony19:logback-android:3.0.0")
 }
 
 sonarqube {
