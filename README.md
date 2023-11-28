@@ -1,8 +1,8 @@
 Gauguin
 -------
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Build](https://github.com/meikpiep/gauguin/actions/workflows/build.yml/badge.svg)](https://github.com/meikpiep/gauguin/actions/workflows/build.yml)]
+![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)(https://www.gnu.org/licenses/gpl-3.0)
+![Build](https://github.com/meikpiep/gauguin/actions/workflows/build.yml/badge.svg)](https://github.com/meikpiep/gauguin/actions/workflows/build.yml)
 
 [![F-Droid version](https://img.shields.io/f-droid/v/org.piepmeyer.gauguin)
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/meikpiep/gauguin)
@@ -14,8 +14,9 @@ Gauguin
 ![GitHub closed issues by-label](https://img.shields.io/github/issues-closed/meikpiep/gauguin/bug)
 ![GitHub closed issues by-label](https://img.shields.io/github/issues-closed/meikpiep/gauguin/enhancement)
 
-[!Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-[!Kotlin](https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+
+![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white)
 
 ![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
 
