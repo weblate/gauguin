@@ -1,8 +1,8 @@
 Gauguin
 -------
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)(https://www.gnu.org/licenses/gpl-3.0)]
-[![Build](https://github.com/meikpiep/gauguin/actions/workflows/build.yml/badge.svg)(https://github.com/meikpiep/gauguin/actions/workflows/build.yml)]
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Build](https://github.com/meikpiep/gauguin/actions/workflows/build.yml/badge.svg)](https://github.com/meikpiep/gauguin/actions/workflows/build.yml)
 
 [![F-Droid version](https://img.shields.io/f-droid/v/org.piepmeyer.gauguin)
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/meikpiep/gauguin)
