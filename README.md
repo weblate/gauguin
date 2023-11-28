@@ -1,5 +1,9 @@
+![Banner](gauguin-app/src/main/play/listings/en-US/graphics/feature-graphic/feature-graphic.png)
+
 Gauguin
 -------
+
+Gauguin is a Sudoku-like game where you solve grids via calculation and logic.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Build](https://github.com/meikpiep/gauguin/actions/workflows/build.yml/badge.svg)](https://github.com/meikpiep/gauguin/actions/workflows/build.yml)
@@ -9,25 +13,13 @@ Gauguin
 ![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/meikpiep/gauguin)
 
 ![GitHub issues by-label](https://img.shields.io/github/issues/meikpiep/gauguin/bug)
-
 ![GitHub issues by-label](https://img.shields.io/github/issues/meikpiep/gauguin/enhancement)
 ![GitHub closed issues by-label](https://img.shields.io/github/issues-closed/meikpiep/gauguin/bug)
 ![GitHub closed issues by-label](https://img.shields.io/github/issues-closed/meikpiep/gauguin/enhancement)
 
-![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+## Installation
 
-![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white)
-
-![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
-
-![F Droid](https://img.shields.io/badge/F_Droid-1976D2?style=for-the-badge&logo=f-droid&logoColor=white)
-
-![Play Store](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)
-
-![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
-
-
-Gauguin is a Sudoku-like game where you solve grids via calculation and logic.
+Find Gauguin at the following stores:
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt="Get it on F-Droid"
