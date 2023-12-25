@@ -6,18 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.skydoves.balloon.ArrowPositionRules
+import com.skydoves.balloon.BalloonAnimation
+import com.skydoves.balloon.BalloonSizeSpec
+import com.skydoves.balloon.createBalloon
+import com.skydoves.balloon.showAlignBottom
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.piepmeyer.gauguin.R
 import org.piepmeyer.gauguin.Utils
 import org.piepmeyer.gauguin.databinding.FragmentMainGameTopBinding
+import org.piepmeyer.gauguin.difficulty.GameDifficulty
 import org.piepmeyer.gauguin.difficulty.GameDifficultyRater
 import org.piepmeyer.gauguin.difficulty.GridDifficultyCalculator
 import org.piepmeyer.gauguin.game.Game
 import org.piepmeyer.gauguin.game.GameLifecycle
 import org.piepmeyer.gauguin.game.GridCreationListener
 import org.piepmeyer.gauguin.game.PlayTimeListener
-import org.piepmeyer.gauguin.difficulty.GameDifficulty
 import org.piepmeyer.gauguin.preferences.ApplicationPreferencesImpl
 import kotlin.time.Duration
 
@@ -38,6 +43,37 @@ class GameTopFragment : Fragment(R.layout.fragment_main_game_top), GridCreationL
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMainGameTopBinding.inflate(inflater, parent, false)
+
+        val onClickListener = View.OnClickListener {
+            val difficultyFragment = MainGameDifficultyLevelFragment()
+
+            val view = difficultyFragment.onCreateView(layoutInflater, null, null)
+
+            val balloon = createBalloon(it.context) {
+                setLayout(view)
+                setWidth(BalloonSizeSpec.WRAP)
+                setHeight(BalloonSizeSpec.WRAP)
+                setBackgroundColorResource(R.color.md_theme_dark_surfaceVariant)
+                setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                setArrowSize(10)
+                setArrowPosition(0.5f)
+                setPadding(12)
+                setCornerRadius(8f)
+                setBalloonAnimation(BalloonAnimation.ELASTIC)
+
+                setLifecycleOwner(this@GameTopFragment)
+                build()
+            }
+
+            binding.ratingStarThree.showAlignBottom(balloon)
+        }
+
+        binding.difficulty.setOnClickListener(onClickListener)
+        binding.ratingStarOne.setOnClickListener(onClickListener)
+        binding.ratingStarTwo.setOnClickListener(onClickListener)
+        binding.ratingStarThree.setOnClickListener(onClickListener)
+        binding.ratingStarFour.setOnClickListener(onClickListener)
+
         return binding.root
     }
 

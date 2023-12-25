@@ -130,6 +130,7 @@ dependencies {
     implementation(libs.thirdparty.konfetti)
     implementation(libs.thirdparty.ferriswheel)
     implementation(libs.thirdparty.navigationdrawer)
+    implementation(libs.thirdparty.balloon)
 }
 
 sonarqube {
