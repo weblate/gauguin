@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainGameDifficultyLevelConstaintLayout"
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
@@ -11,9 +12,9 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/veryEasyMaximumValue"
-        app:layout_constraintBottom_toBottomOf="@+id/veryEasyMaximumValue"
-        android:backgroundTint="@color/md_theme_light_tertiary"
+        app:layout_constraintTop_toTopOf="@+id/veryEasy"
+        app:layout_constraintBottom_toBottomOf="@+id/veryEasy"
+        android:backgroundTint="@color/mainTopPanelBackground"
         style="@style/Widget.Material3.CardView.Outlined"
         />
 
@@ -22,8 +23,9 @@
         style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/difficulty_very_easy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -69,14 +71,14 @@
         app:layout_constraintTop_toBottomOf="@id/hard" />
 
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrierBeforeStars"
+        android:id="@+id/barrierAfterLabels"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="end"
         app:constraint_referenced_ids="veryEasy,easy,medium,hard,extreme" />
 
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrierAfterLabels"
+        android:id="@+id/barrierBeforeStars"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="end"
@@ -86,7 +88,7 @@
         android:id="@+id/veryEasyMinimumValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="20 ... 50"
+        android:text="-"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -375,6 +377,7 @@
         app:layout_constraintStart_toEndOf="@id/ratingStarVeryEasyFour"
         app:layout_constraintTop_toTopOf="@id/ratingStarVeryEasyFour"
         app:layout_constraintBottom_toBottomOf="@id/ratingStarVeryEasyFour"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -390,6 +393,7 @@
         app:layout_constraintStart_toEndOf="@id/ratingStarEasyFour"
         app:layout_constraintTop_toTopOf="@id/ratingStarEasyFour"
         app:layout_constraintBottom_toBottomOf="@id/ratingStarEasyFour"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <com.google.android.material.textview.MaterialTextView
@@ -405,13 +409,13 @@
         app:layout_constraintStart_toEndOf="@id/ratingStarMediumFour"
         app:layout_constraintTop_toTopOf="@id/ratingStarMediumFour"
         app:layout_constraintBottom_toBottomOf="@id/ratingStarMediumFour"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/hardMaximumValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="20 ... 50"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -420,6 +424,7 @@
         app:layout_constraintStart_toEndOf="@id/ratingStarHardFour"
         app:layout_constraintTop_toTopOf="@id/ratingStarHardFour"
         app:layout_constraintBottom_toBottomOf="@id/ratingStarHardFour"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <com.google.android.material.textview.MaterialTextView
