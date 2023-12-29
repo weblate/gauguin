@@ -44,6 +44,12 @@ data class Game(
     }
 
     fun updateGrid(newGrid: Grid) {
+        if (grid.cells.any { it.cage == null }) {
+            IllegalArgumentException("Buh").printStackTrace()
+            System.exit(1)
+        }
+
+
         grid = newGrid
         gridUI.grid = grid
 

@@ -79,6 +79,8 @@ class NewGameActivity : AppCompatActivity(), GridPreviewHolder, GridPreviewListe
             calculationService.nextGrid = grid
         }
 
+        println("Grid of new game: $grid")
+
         val intent = this.intent
         intent.action = Intent.ACTION_SEND
 

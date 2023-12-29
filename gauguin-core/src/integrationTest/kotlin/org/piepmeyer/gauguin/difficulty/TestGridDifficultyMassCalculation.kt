@@ -24,7 +24,7 @@ import java.io.File
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class TestGridDifficultyMassCalculation : FunSpec({
-    xtest("calculateValues") {
+    test("calculateValues") {
         runBlocking(Dispatchers.Default) {
 
             DebugProbes.install()
@@ -56,10 +56,10 @@ suspend fun calculateDifficulties(): List<Deferred<Pair<GameVariant, Double>>> =
     val digitSetting = DigitSetting.FIRST_DIGIT_ONE
     val deferreds = mutableListOf<Deferred<Pair<GameVariant, Double>>>()
 
-    for (size in listOf(9)) {
-        for (showOperators in listOf(true)) {
+    for (size in listOf(2)) {
+        for (showOperators in listOf(true, false)) {
             for (cageOperation in GridCageOperation.entries) {
-                for (singleCageUsage in listOf(SingleCageUsage.FIXED_NUMBER)) {
+                for (singleCageUsage in listOf(SingleCageUsage.FIXED_NUMBER, SingleCageUsage.DYNAMIC)) {
                     val variant = GameVariant(
                         GridSize(size, size),
                         GameOptionsVariant(

@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity(), GridCreationListener {
             recordTime?.let { gameEndedSnackbar = showSnackbar("${getString(R.string.puzzle_record_time)} $it") }
             val konfettiView = binding.konfettiView
 
-            val emitterConfig = Emitter(15L, TimeUnit.SECONDS).perSecond(150)
+            val emitterConfig = Emitter(8L, TimeUnit.SECONDS).perSecond(150)
 
             val colors = listOf(
                 MaterialColors.getColor(konfettiView, com.google.android.material.R.attr.colorPrimary),
@@ -174,9 +174,13 @@ class MainActivity : AppCompatActivity(), GridCreationListener {
         }
     }
 
-    private fun showAndStartGame(currentGrid: Grid) {
+    private fun showAndStartGame(currentGrid: Grid, startedFromMainActivity: Boolean = false) {
         runOnUiThread {
-            binding.konfettiView.reset()
+            if (startedFromMainActivity) {
+                binding.konfettiView.stopGracefully()
+            } else {
+                binding.konfettiView.reset()
+            }
 
             binding.gridview.grid = currentGrid
             updateGameObject(currentGrid)
@@ -262,7 +266,7 @@ class MainActivity : AppCompatActivity(), GridCreationListener {
         MainDialogs(this).newGameGridDialog()
     }
 
-    private fun postNewGame() {
+    private fun postNewGame(startedFromMainActivity: Boolean = false) {
         gameEndedSnackbar?.dismiss()
         gameEndedSnackbar = null
 
@@ -282,13 +286,11 @@ class MainActivity : AppCompatActivity(), GridCreationListener {
         if (calculationService.hasCalculatedNextGrid(variant)) {
             val grid = calculationService.consumeNextGrid()
             grid.isActive = true
-            showAndStartGame(grid)
+            showAndStartGame(grid, startedFromMainActivity)
             val t = Thread { calculationService.calculateNextGrid() }
             t.name = "PreviewCalculatorFromMainNext-" + variant.width + "x" + variant.height
             t.start()
         } else {
-            val grid = Grid(variant)
-            binding.gridview.grid = grid
             val t = Thread {
                 calculationService.calculateCurrentAndNextGrids(variant)
             }
@@ -334,7 +336,7 @@ class MainActivity : AppCompatActivity(), GridCreationListener {
 
     fun checkProgressOrStartNewGame() {
         if (game.grid.isSolved) {
-            postNewGame()
+            postNewGame(startedFromMainActivity = true)
         } else {
             checkProgress()
         }
