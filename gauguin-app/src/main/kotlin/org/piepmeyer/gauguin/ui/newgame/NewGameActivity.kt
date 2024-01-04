@@ -17,6 +17,7 @@ import org.piepmeyer.gauguin.grid.GridSize
 import org.piepmeyer.gauguin.options.GameVariant
 import org.piepmeyer.gauguin.preferences.ApplicationPreferences
 import org.piepmeyer.gauguin.ui.ActivityUtils
+import org.piepmeyer.gauguin.ui.challenge.ChooseChallengeActivity
 
 class NewGameActivity : AppCompatActivity(), GridPreviewHolder, GridPreviewListener {
     private val applicationPreferences: ApplicationPreferences by inject()
@@ -36,8 +37,8 @@ class NewGameActivity : AppCompatActivity(), GridPreviewHolder, GridPreviewListe
 
         activityUtils.configureFullscreen(this)
 
-        val startNewGameButton = binding.startnewgame
-        startNewGameButton.setOnClickListener { startNewGame() }
+        binding.startnewgame.setOnClickListener { startNewGame() }
+        binding.showChallenges?.setOnClickListener { showChallenges() }
 
         val ft = supportFragmentManager.beginTransaction()
         cellOptionsFragment = GridCellOptionsFragment()
@@ -84,6 +85,19 @@ class NewGameActivity : AppCompatActivity(), GridPreviewHolder, GridPreviewListe
         intent.action = Intent.ACTION_SEND
 
         this.setResult(99, intent)
+        finishAfterTransition()
+    }
+
+    private fun showChallenges() {
+        val intent = Intent(this, ChooseChallengeActivity::class.java)
+
+        this.startActivityForResult(intent, 666)
+
+        val returningIntent = this.intent
+        returningIntent.action = Intent.ACTION_SEND
+
+        this.setResult(99, returningIntent)
+
         finishAfterTransition()
     }
 

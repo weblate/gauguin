@@ -13,6 +13,7 @@ import nl.dionsegijn.konfetti.core.PartyFactory
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import org.koin.android.ext.android.inject
 import org.piepmeyer.gauguin.R
+import org.piepmeyer.gauguin.calculation.CalculationMode
 import org.piepmeyer.gauguin.calculation.GridCalculationListener
 import org.piepmeyer.gauguin.calculation.GridCalculationService
 import org.piepmeyer.gauguin.databinding.ActivityMainBinding
@@ -279,27 +280,35 @@ class MainActivity : AppCompatActivity(), GridCreationListener {
             statisticsManager.storeStreak(false)
         }
 
-        val variant =
-            if (startedFromMainActivityWithSameVariant) {
-                game.grid.variant
-            } else {
-                GameVariant(
-                    GridSize(
-                        applicationPreferences.gridWidth,
-                        applicationPreferences.gridHeigth,
-                    ),
-                    applicationPreferences.gameVariant,
-                )
+        when (calculationService.mode) {
+            CalculationMode.CalculateGrids -> {
+                if (startedFromMainActivityWithSameVariant) {
+                    game.grid.variant
+                } else {
+                    GameVariant(
+                        GridSize(
+                            applicationPreferences.gridWidth,
+                            applicationPreferences.gridHeigth,
+                        ),
+                        applicationPreferences.gameVariant,
+                    )
+                }
+
+                if (calculationService.hasCalculatedNextGrid(variant)) {
+                    val grid = calculationService.consumeNextGrid()
+                    grid.isActive = true
+                    showAndStartGame(grid, startedFromMainActivityWithSameVariant)
+
+                    calculationService.calculateNextGrid(lifecycleScope)
+                } else {
+                    calculationService.calculateCurrentAndNextGrids(variant, lifecycleScope)
+                }
             }
-
-        if (calculationService.hasCalculatedNextGrid(variant)) {
-            val grid = calculationService.consumeNextGrid()
-            grid.isActive = true
-            showAndStartGame(grid, startedFromMainActivityWithSameVariant)
-
-            calculationService.calculateNextGrid(lifecycleScope)
-        } else {
-            calculationService.calculateCurrentAndNextGrids(variant, lifecycleScope)
+            CalculationMode.PlaySingleChallenge -> {
+                val grid = calculationService.consumeNextGrid()
+                grid.isActive = true
+                showAndStartGame(grid, startedFromMainActivityWithSameVariant)
+            }
         }
     }
 

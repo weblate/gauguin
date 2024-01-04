@@ -14,6 +14,7 @@ class GridCalculationService(
 ) {
     private val listeners = mutableListOf<GridCalculationListener>()
     var nextGrid: Grid? = null
+    var mode = CalculationMode.CalculateGrids
 
     fun addListener(listener: GridCalculationListener) {
         listeners += listener
