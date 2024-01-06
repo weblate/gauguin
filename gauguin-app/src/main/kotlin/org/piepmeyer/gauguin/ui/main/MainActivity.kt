@@ -282,17 +282,18 @@ class MainActivity : AppCompatActivity(), GridCreationListener {
 
         when (calculationService.mode) {
             CalculationMode.CalculateGrids -> {
-                if (startedFromMainActivityWithSameVariant) {
-                    game.grid.variant
-                } else {
-                    GameVariant(
-                        GridSize(
-                            applicationPreferences.gridWidth,
-                            applicationPreferences.gridHeigth,
-                        ),
-                        applicationPreferences.gameVariant,
-                    )
-                }
+                val variant =
+                    if (startedFromMainActivityWithSameVariant) {
+                        game.grid.variant
+                    } else {
+                        GameVariant(
+                            GridSize(
+                                applicationPreferences.gridWidth,
+                                applicationPreferences.gridHeigth,
+                            ),
+                            applicationPreferences.gameVariant,
+                        )
+                    }
 
                 if (calculationService.hasCalculatedNextGrid(variant)) {
                     val grid = calculationService.consumeNextGrid()
