@@ -47,7 +47,7 @@ class TestGridCreator : FunSpec({
     test("deterministic random number generator leads to deterministic grids") {
         val variant =
             GameVariant(
-                GridSize(10, 10),
+                GridSize(11, 11),
                 GameOptionsVariant.createClassic(),
             )
 
@@ -59,7 +59,7 @@ class TestGridCreator : FunSpec({
 })
 
 private suspend fun calculateGrid(variant: GameVariant): Grid {
-    val randomizer = SeedRandomizerMock(1)
+    val randomizer = SeedRandomizerMock(0)
 
     val creator =
         GridCalculator(

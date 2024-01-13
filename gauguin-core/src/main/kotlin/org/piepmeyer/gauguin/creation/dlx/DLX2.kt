@@ -3,20 +3,19 @@ package org.piepmeyer.gauguin.creation.dlx
 import kotlinx.coroutines.ensureActive
 import kotlin.coroutines.coroutineContext
 
-open class DLX(
+open class DLX2(
     numberOfColumns: Int,
     numberOfNodes: Int,
-    private val dlxGrid: DLXGrid,
 ) {
     private val root = DLXColumn()
-    private val trysolution = ArrayList<DLXColumn>()
+    private val trysolution = ArrayList<Int>()
     private var columnHeaders: Array<DLXColumn> = Array(numberOfColumns) { DLXColumn() }
     private var nodes: Array<DLXNode?> = arrayOfNulls(numberOfNodes + 1)
     private var numnodes = 0
     private var lastNodeAdded: DLXNode? = null
     private var numberOfSolutions = 0
     private var previousRow = -1
-    private var solvetype: SolveType? = null
+    private var solvetype: DLX.SolveType? = null
 
     init {
         var prev: DLXColumn? = root
@@ -69,7 +68,7 @@ open class DLX(
         var mincol = search
 
         while (search !== root) {
-            if (search.size < minsize) {
+            if (search.size <= minsize) {
                 mincol = search
                 minsize = mincol.size
                 if (minsize == 0) {
@@ -106,7 +105,7 @@ open class DLX(
         lastNodeAdded = node
     }
 
-    suspend fun solve(st: SolveType): Int {
+    suspend fun solve(st: DLX.SolveType): Int {
         solvetype = st
         numberOfSolutions = 0
         search(trysolution.size)
@@ -119,22 +118,6 @@ open class DLX(
 
             println(trysolution)
 
-            trysolution.forEach {
-                val headerNumber = columnHeaders.indexOf(it)
-
-                println(headerNumber)
-
-                val maximumColumnHeader = dlxGrid.possibleDigits.size * dlxGrid.grid.gridSize.width
-                val maximumRowHeader = maximumColumnHeader
-                +dlxGrid.possibleDigits.size * dlxGrid.grid.gridSize.height
-
-                when (headerNumber) {
-                    in 0..maximumColumnHeader -> headerNumber
-                    in maximumColumnHeader + 1..maximumRowHeader -> headerNumber
-                    else -> {}
-                }
-            }
-
             return
         }
 
@@ -145,9 +128,9 @@ open class DLX(
             var r = chosenCol.down
             while (r !== chosenCol) {
                 if (k >= trysolution.size) {
-                    trysolution.add((r as DLXNode).column)
+                    trysolution.add((r as DLXNode).row)
                 } else {
-                    trysolution[k] = (r as DLXNode).column
+                    trysolution[k] = (r as DLXNode).row
                 }
 
                 coverColumns(r)
@@ -183,12 +166,7 @@ open class DLX(
     }
 
     private fun isSolved(): Boolean {
-        return (solvetype == SolveType.ONE && numberOfSolutions > 0) ||
-            (solvetype == SolveType.MULTIPLE && numberOfSolutions > 1)
-    }
-
-    enum class SolveType {
-        ONE,
-        MULTIPLE,
+        return (solvetype == DLX.SolveType.ONE && numberOfSolutions > 0) ||
+            (solvetype == DLX.SolveType.MULTIPLE && numberOfSolutions > 1)
     }
 }

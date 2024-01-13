@@ -5,7 +5,7 @@ import org.piepmeyer.gauguin.grid.Grid
 
 private val logger = KotlinLogging.logger {}
 
-class MathDokuDLX(
+class MathDokuDLX2(
     private val grid: Grid,
 ) {
     private val dlxGrid = DLXGrid(grid)
@@ -35,7 +35,7 @@ class MathDokuDLX(
     }
 
     private fun logConstraints(constraints: List<BooleanArray>) {
-        if (logger.isInfoEnabled()) {
+        if (logger.isDebugEnabled()) {
             logConstraintsHeader()
 
             for (constraint in constraints) {
@@ -51,7 +51,7 @@ class MathDokuDLX(
                     )
                 }
 
-                logger.info { constraintInfo.toString() }
+                logger.debug { constraintInfo.toString() }
             }
         }
     }
@@ -78,15 +78,16 @@ class MathDokuDLX(
             headerValue.append("$cage".padEnd(4))
         }
 
-        logger.info { headerValue.toString() }
-        logger.info { headerCellId.toString() }
+        logger.debug { headerValue.toString() }
+        logger.debug { headerCellId.toString() }
     }
 
     suspend fun solve(type: DLX.SolveType): Int {
         initialize()
 
         val constraintCageCalculator = ConstraintsFromGridCagesCalculator(dlxGrid, numberOfCages)
-        val constraintRectangularCalculator = ConstraintsFromRectangularGridsCalculator(dlxGrid, numberOfCages)
+        val constraintRectangularCalculator =
+            ConstraintsFromRectangularGridsCalculator(dlxGrid, numberOfCages)
 
         val constraints =
             constraintCageCalculator.calculateConstraints() +
@@ -99,7 +100,7 @@ class MathDokuDLX(
 
         logger.info { "Using $numberOfNodes nodes and $numberOfColumns columns." }
 
-        val dlx = DLX(numberOfColumns, numberOfNodes, dlxGrid)
+        val dlx = DLX2(numberOfColumns, numberOfNodes)
 
         for ((currentCombination, constraint) in constraints.withIndex()) {
             for (constraintIndex in constraint.indices) {
