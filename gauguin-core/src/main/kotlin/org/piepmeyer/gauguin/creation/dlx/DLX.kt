@@ -129,8 +129,12 @@ open class DLX(
                 +dlxGrid.possibleDigits.size * dlxGrid.grid.gridSize.height
 
                 when (headerNumber) {
-                    in 0..maximumColumnHeader -> headerNumber
-                    in maximumColumnHeader + 1..maximumRowHeader -> headerNumber
+                    in 0..maximumColumnHeader -> {
+                        println("column " + headerNumber.rem(dlxGrid.possibleDigits.size))
+                    }
+                    in maximumColumnHeader + 1..maximumRowHeader -> {
+                        println("row " + (headerNumber - maximumColumnHeader).rem(dlxGrid.possibleDigits.size))
+                    }
                     else -> {}
                 }
             }
