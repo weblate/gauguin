@@ -7,6 +7,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     alias(libs.plugins.triplet)
+    id("dev.testify")
 }
 
 val keystoreProperties = Properties()
@@ -30,6 +31,7 @@ android {
         minSdk = 24
         targetSdk = 34
         resourceConfigurations += setOf("en-rUS", "de-rDE")
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     if (keystoreExists) {
@@ -127,6 +129,9 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.transition)
     implementation(libs.androidx.window)
+
+    androidTestImplementation("androidx.test:rules:1.5.0")
+    androidTestImplementation("androidx.test:runner:1.5.2")
 
     implementation(libs.thirdparty.konfetti)
     implementation(libs.thirdparty.ferriswheel)
