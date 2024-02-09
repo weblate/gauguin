@@ -146,6 +146,7 @@ dependencies {
 
     testImplementation(libs.bundles.kotest)
     testImplementation("io.kotest:kotest-runner-junit5:5.8.0")
+    testImplementation(libs.test.mockk)
 }
 
 sonarqube {
@@ -156,6 +157,8 @@ sonarqube {
 
 tasks.create("jacocoUnitTestReport", JacocoReport::class.java) {
     // dependsOn(tasks.named("testDebugUnitTest"))
+
+    executionData.setFrom(setOf(layout.buildDirectory.asFile.get().path + "/build/jacoco/testReleaseUnitTest.exec"))
 
     reports {
         csv.required = false
