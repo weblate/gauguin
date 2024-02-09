@@ -73,6 +73,12 @@ android {
             enableUnitTestCoverage = true
             resValue("bool", "debuggable", "true")
         }
+
+        testOptions {
+            unitTests.all {
+                it.useJUnitPlatform()
+            }
+        }
     }
 
     buildFeatures {
@@ -139,6 +145,7 @@ dependencies {
     implementation(libs.bundles.koin)
 
     testImplementation(libs.bundles.kotest)
+    testImplementation("io.kotest:kotest-runner-junit5:5.8.0")
 }
 
 sonarqube {
