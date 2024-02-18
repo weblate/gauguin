@@ -206,6 +206,56 @@ enum class GridCageType(
             .up(2, 2).left(1, 2).build(),
     ),
 
+    /* 0 1 2
+     *   3
+     */
+    TETRIS_T(
+        arrayOf(Pair(0, 0), Pair(1, 0), Pair(2, 0), Pair(1, 1)),
+        { it[0] != it[1] && it[0] != it[2] && it[1] != it[2] && it[1] != it[3] },
+        BorderInfoBuilder().down(1, 2).right()
+            .down().right(1, 2)
+            .up().right()
+            .up(1, 2).left(3, 2).build(),
+    ),
+
+    /*   0
+     * 1 2 3
+     */
+    TETRIS_T_BOTTOM_UP(
+        arrayOf(Pair(0, 0), Pair(-1, 1), Pair(0, 1), Pair(1, 1)),
+        { it[0] != it[2] && it[1] != it[2] && it[1] != it[3] && it[2] != it[3] },
+        BorderInfoBuilder().down(1).left(1)
+            .down(1, 2).right(3, 2)
+            .up(1, 2).left(1)
+            .up().left(1, 2).build(),
+    ),
+
+    /* 0
+     * 1 2
+     * 3
+     */
+    TETRIS_T_LEFT_UP(
+        arrayOf(Pair(0, 0), Pair(0, 1), Pair(1, 1), Pair(0, 2)),
+        { it[0] != it[1] && it[0] != it[3] && it[1] != it[2] && it[1] != it[3] },
+        BorderInfoBuilder().down(3, 2).right(1, 2)
+            .up().right()
+            .up(1, 2).left()
+            .up().left(1, 2).build(),
+    ),
+
+    /*   0
+     * 1 2
+     *   3
+     */
+    TETRIS_T_RIGHT_UP(
+        arrayOf(Pair(0, 0), Pair(-1, 1), Pair(0, 1), Pair(0, 2)),
+        { it[0] != it[2] && it[0] != it[3] && it[1] != it[2] && it[2] != it[3] },
+        BorderInfoBuilder().down(1).left()
+            .down(1, 2).right()
+            .down().right(1, 2)
+            .up(3, 2).left(1, 2).build(),
+    ),
+
     FOUR_HORIZONTAL(
         arrayOf(Pair(0, 0), Pair(1, 0), Pair(2, 0), Pair(3, 0)),
         { it[0] != it[1] && it[0] != it[2] && it[0] != it[3] && it[1] != it[2] && it[1] != it[3] && it[2] != it[3] },
